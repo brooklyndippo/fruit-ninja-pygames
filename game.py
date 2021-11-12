@@ -1,6 +1,8 @@
 import pygame 
 pygame.init()
 from gameobject import GameObject
+from apple import Apple
+from strawberry import Strawberry
 
 # Set the game window
 screen_width = 500
@@ -8,7 +10,14 @@ screen_height = 500
 screen = pygame.display.set_mode([screen_height, screen_height])
 
 
-apple = GameObject(0, 250, 'apple.png')
+apple = Apple()
+apple2 = Apple()
+apple3 = Apple()
+strawberry = Strawberry()
+strawberry2 = Strawberry()
+strawberry3 = Strawberry()
+
+fruits = [apple, apple2, apple3, strawberry, strawberry2, strawberry3]
 
 # Create the game loop ------------------------------------------
 running = True 
@@ -23,6 +32,15 @@ while running:
 
     #----------------------------------------------------------
     # #YOUR DRAWING
+    # Draw apple
+    # apple.move()
+    # apple.render(screen)
+    # strawberry.move()
+    # strawberry.render(screen)
+
+    for fruit in fruits:
+        fruit.move()
+        fruit.render(screen)
     
     # class GameObject(pygame.sprite.Sprite):
     #     def __init__(self, x, y, image):
@@ -41,9 +59,6 @@ while running:
 
     # Make an instance of GameObject
 
-    apple.x += 1
-    apple.render(screen)
-
 
     
     # Make an instance of GameObject
@@ -51,18 +66,18 @@ while running:
 
 
 #   # #draw the fruits
-    for num in range (0,9):
-        x = num % 3
-        y = int(num/3)
+    # for num in range (0,9):
+    #     x = num % 3
+    #     y = int(num/3)
 
-        if num % 2:
-            fruit = 'strawberry.png'
+    #     if num % 2:
+    #         fruit = 'strawberry.png'
 
-        else:
-            fruit = 'apple.png'
+    #     else:
+    #         fruit = 'apple.png'
 
-        newFruit = GameObject (((x+1)*100), ((y+1)*100), fruit)
-        newFruit.render(screen)
+    #     newFruit = GameObject (((x+1)*100), ((y+1)*100), fruit)
+    #     newFruit.render(screen)
 #     #----------------------------------------------------------
 
 
