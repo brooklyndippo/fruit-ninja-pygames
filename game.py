@@ -22,6 +22,23 @@ fruits = [apple, apple2, apple3, strawberry, strawberry2, strawberry3]
 # Create the game loop ------------------------------------------
 running = True 
 while running: 
+    # Looks at events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        # Check for event type KEYBOARD
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+            elif event.key == pygame.K_LEFT:
+                print('LEFT')
+            elif event.key == pygame.K_RIGHT:
+                print('RIGHT')
+            elif event.key == pygame.K_UP:
+                print('UP')
+            elif event.key == pygame.K_DOWN:
+                print('DOWN')
+  
 	# Looks at events 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -39,8 +56,8 @@ while running:
     # strawberry.render(screen)
 
     for fruit in fruits:
-        fruit.move()
-        fruit.render(screen)
+            fruit.move()
+            fruit.render(screen)
     
     # class GameObject(pygame.sprite.Sprite):
     #     def __init__(self, x, y, image):
