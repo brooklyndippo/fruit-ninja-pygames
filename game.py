@@ -3,6 +3,7 @@ pygame.init()
 from gameobject import GameObject
 from apple import Apple
 from strawberry import Strawberry
+from player import Player
 
 # Set the game window
 screen_width = 500
@@ -16,6 +17,7 @@ apple3 = Apple()
 strawberry = Strawberry()
 strawberry2 = Strawberry()
 strawberry3 = Strawberry()
+player = Player()
 
 fruits = [apple, apple2, apple3, strawberry, strawberry2, strawberry3]
 
@@ -31,13 +33,13 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
             elif event.key == pygame.K_LEFT:
-                print('LEFT')
+                player.left()
             elif event.key == pygame.K_RIGHT:
-                print('RIGHT')
+                player.right()
             elif event.key == pygame.K_UP:
-                print('UP')
+                player.up()
             elif event.key == pygame.K_DOWN:
-                print('DOWN')
+                player.down()
   
 	# Looks at events 
     for event in pygame.event.get():
@@ -56,9 +58,12 @@ while running:
     # strawberry.render(screen)
 
     for fruit in fruits:
-            fruit.move()
-            fruit.render(screen)
+        fruit.move()
+        fruit.render(screen)
     
+    # Draw player 
+    player.move()
+    player.render(screen)
     # class GameObject(pygame.sprite.Sprite):
     #     def __init__(self, x, y, image):
     #         super(GameObject, self).__init__()
