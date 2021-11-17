@@ -21,7 +21,16 @@ player = Player()
 
 fruits = [apple, apple2, apple3, strawberry, strawberry2, strawberry3]
 
-# Create the game loop ------------------------------------------
+# Make a group
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
+
+for fruit in fruits:
+    all_sprites.add(fruit)
+
+print(all_sprites)
+
+# Create the GAME LOOP ------------------------------------------
 running = True 
 while running: 
     # Looks at events
@@ -51,56 +60,18 @@ while running:
 
     #----------------------------------------------------------
     # #YOUR DRAWING
-    # Draw apple
-    # apple.move()
-    # apple.render(screen)
-    # strawberry.move()
-    # strawberry.render(screen)
+ 
 
-    for fruit in fruits:
-        fruit.move()
-        fruit.render(screen)
-    
-    # Draw player 
-    player.move()
-    player.render(screen)
-    # class GameObject(pygame.sprite.Sprite):
-    #     def __init__(self, x, y, image):
-    #         super(GameObject, self).__init__()
-    #         self.surf = pygame.image.load(image)
-    #         self.x = x
-    #         self.y = y
-
-    #     def render(self, screen):
-    #         screen.blit(self.surf, (self.x, self.y))
+    # Move and render Sprites (Player and FRUITS)
+    for entity in all_sprites:
+        entity.move()
+        entity.render(screen)
 
     
     # Get the clock
     clock = pygame.time.Clock()
-    
 
-    # Make an instance of GameObject
-
-
-    
-    # Make an instance of GameObject
-
-
-
-#   # #draw the fruits
-    # for num in range (0,9):
-    #     x = num % 3
-    #     y = int(num/3)
-
-    #     if num % 2:
-    #         fruit = 'strawberry.png'
-
-    #     else:
-    #         fruit = 'apple.png'
-
-    #     newFruit = GameObject (((x+1)*100), ((y+1)*100), fruit)
-    #     newFruit.render(screen)
-#     #----------------------------------------------------------
+    #----------------------------------------------------------
 
 
     # Update the window

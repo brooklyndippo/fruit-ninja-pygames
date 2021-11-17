@@ -9,18 +9,26 @@ class Strawberry(GameObject):
         self.dy = 0
         self.reset() 
 
-    #initialize movement
     def move(self):
-        self.x += self.dx
-        self.y += self.dy
-        # Check the y position of the apple
-        if self.x > 500: 
-            self.reset()
+        if self.direction == 'right':
+            self.x += self.dx
+            # Check the x position of the strawberry
+            if self.x > 500: 
+                self.reset()
+        elif self.direction == 'left':
+            self.x -= self.dx
+            # Check the y position of the strawberry
+            if self.x < -50: 
+                self.reset()
 
     #when it goes offscreen replace it
     def reset(self):
         lane = [93, 218, 343]
-        self.x = randint(-100, -64)
         self.y = lane[randint(0,2)]
-
-
+        left_or_right = [-50, 550]
+        self.x = left_or_right[randint(0,1)]
+        if self.x == -50:
+            self.direction = 'right'
+        if self.x == 550:
+            self.direction = 'left'
+        print(self.direction)
