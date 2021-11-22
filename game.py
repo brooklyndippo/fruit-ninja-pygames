@@ -6,12 +6,16 @@ from apple import Apple
 from strawberry import Strawberry
 from player import Player
 from bomb import Bomb
+from background import Background
 
 # Set the game window
 screen_width = 500
 screen_height = 500
 screen = pygame.display.set_mode([screen_height, screen_height])
 
+background = Background()
+background.random()
+background.load()
 
 apple = Apple()
 apple2 = Apple()
@@ -65,7 +69,8 @@ while running:
 
 
     # Clear screen
-    screen.fill((255, 255, 255))
+    screen.blit(background.image, [0, 0])
+
 
     #----------------------------------------------------------
     # #YOUR DRAWING
@@ -88,6 +93,8 @@ while running:
         print(bomb.rect)
         print(player.rect)
         #reset game
+        background.rotate()
+        background.load()
         for strawberry in strawberries:
             strawberry.dx = (randint(0, 200) / 100) + 1
         for apple in apples:
