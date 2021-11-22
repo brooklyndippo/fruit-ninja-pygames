@@ -24,6 +24,7 @@ class Apple(GameObject):
     #when it goes offscreen replace it
     def reset(self):
         lane = [93, 218, 343]
+        self.dy += .1
         self.x = lane[randint(0,2)]
         up_or_down = [-50, 550]
         self.y = up_or_down[randint(0,1)]

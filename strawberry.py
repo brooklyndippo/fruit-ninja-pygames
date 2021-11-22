@@ -25,6 +25,7 @@ class Strawberry(GameObject):
     def reset(self):
         lane = [93, 218, 343]
         self.y = lane[randint(0,2)]
+        self.dx += .1
         left_or_right = [-50, 550]
         self.x = left_or_right[randint(0,1)]
         if self.x == -50:

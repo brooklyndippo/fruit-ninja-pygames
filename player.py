@@ -2,9 +2,12 @@ from gameobject import GameObject
 
 class Player(GameObject):
     def __init__(self):
-        super(Player, self).__init__(0, 0, 'player.png')
+        super(Player, self).__init__(250, 250, 'player.png')
         self.dx = 250 - 32
         self.dy = 250 - 32
+        self.x = 250
+        self.y = 250
+        print ('Player Reset')
         self.reset()
 
     def left(self):

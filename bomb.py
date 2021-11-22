@@ -6,7 +6,7 @@ class Bomb(GameObject):
     def __init__(self):
         super(Bomb, self).__init__(0, 0, 'bomb.png')
         self.dx = (randint(0, 200) / 100) + 1
-        self.dy = 0
+        self.dy = (randint(0, 200) / 100) + 1
         self.reset() 
 
     def move(self):
@@ -52,4 +52,5 @@ class Bomb(GameObject):
         elif self.direction == 'down':
             self.y = -50
 
+        print('bomb:')
         print(self.direction)

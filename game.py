@@ -1,5 +1,6 @@
 import pygame 
 pygame.init()
+from random import random, randint
 from gameobject import GameObject
 from apple import Apple
 from strawberry import Strawberry
@@ -21,15 +22,19 @@ strawberry3 = Strawberry()
 bomb = Bomb()
 player = Player()
 
+apples = [apple, apple2, apple3]
+strawberries = [strawberry, strawberry2, strawberry3]
 fruits = [apple, apple2, apple3, strawberry, strawberry2, strawberry3]
 
 # Make a group
 all_sprites = pygame.sprite.Group()
+fruit_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 all_sprites.add(bomb)
 
 for fruit in fruits:
     all_sprites.add(fruit)
+    fruit_sprites.add(fruit)
 
 print(all_sprites)
 
@@ -58,18 +63,37 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+
     # Clear screen
     screen.fill((255, 255, 255))
 
     #----------------------------------------------------------
     # #YOUR DRAWING
- 
+    
 
     # Move and render Sprites (Player and FRUITS)
     for entity in all_sprites:
         entity.move()
         entity.render(screen)
 
+        # # # Check Colisions
+    fruit = pygame.sprite.spritecollideany(player, fruit_sprites)
+    if fruit:
+        fruit.reset()
+
+    # # # Check collision player and bomb
+    bomb_collide = pygame.sprite.collide_rect(player, bomb)
+    if bomb_collide:
+        print('Bomb Collide')
+        print(bomb.rect)
+        print(player.rect)
+        #reset game
+        for strawberry in strawberries:
+            strawberry.dx = (randint(0, 200) / 100) + 1
+        for apple in apples:
+            apple.dy = (randint(0, 200) / 100) + 1
+        for entity in all_sprites:
+            entity.reset()
     
     # Get the clock
     clock = pygame.time.Clock()
