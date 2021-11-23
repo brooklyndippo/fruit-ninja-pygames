@@ -2,7 +2,9 @@ from gameobject import GameObject
 
 class Player(GameObject):
     def __init__(self):
-        super(Player, self).__init__(250, 250, 'player.png')
+        super(Player, self).__init__(250, 250, 'pygames-underwater/scubadiver.png')
+        self.width = 80
+        self.height = 80
         self.dx = 250 - 32
         self.dy = 250 - 32
         self.x = 250

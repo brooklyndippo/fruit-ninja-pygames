@@ -35,6 +35,6 @@ class Background:
     def load(self):
         self.image = pygame.image.load(self.image)
         self.image = self.image.convert()
-        self.image = pygame.transform.scale(self.image, (900, 500))
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
 
     

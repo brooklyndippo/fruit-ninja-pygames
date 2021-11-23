@@ -1,10 +1,17 @@
 from gameobject import GameObject
 from random import random, randint
 
+treasure = [
+    "pygames-underwater/PNG/Bonus/Pearl.png",
+    "pygames-underwater/PNG/Bonus/Coin.png",
+    "pygames-underwater/PNG/Bonus/Acceleration.png",
+    "pygames-underwater/PNG/Bonus/Crown.png"
+]
+
 
 class Strawberry(GameObject):
     def __init__(self):
-        super(Strawberry, self).__init__(0, 0, 'strawberry.png')
+        super(Strawberry, self).__init__(0, 0, treasure[randint(0,3)])
         self.dx = (randint(0, 200) / 100) + 1
         self.dy = 0
         self.reset() 

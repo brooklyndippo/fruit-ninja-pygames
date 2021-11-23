@@ -1,10 +1,16 @@
 from gameobject import GameObject
 from random import random, randint
 
+junk = [
+    "pygames-underwater/PNG/Let/Anchor.png",
+    "pygames-underwater/PNG/Let/Steering-wheel.png",
+    "pygames-underwater/PNG/Let/Barrel_2.png"
+]
+
 
 class Apple(GameObject):
     def __init__(self):
-        super(Apple, self).__init__(0, 0, 'apple.png')
+        super(Apple, self).__init__(0, 0, junk[randint(0,2)])
         self.dy = (randint(0, 200) / 100) + 1
         self.reset() 
 

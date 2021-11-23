@@ -7,38 +7,51 @@ from strawberry import Strawberry
 from player import Player
 from bomb import Bomb
 from background import Background
+from scoreboard import ScoreBoard
+
 
 # Set the game window
 screen_width = 500
 screen_height = 500
 screen = pygame.display.set_mode([screen_height, screen_height])
 
+#select a background
 background = Background()
 background.random()
 background.load()
 
-apple = Apple()
-apple2 = Apple()
-apple3 = Apple()
-strawberry = Strawberry()
-strawberry2 = Strawberry()
-strawberry3 = Strawberry()
+#set the scoreboard
+score = ScoreBoard(30, 30, 0, 'score')
+high_score = ScoreBoard(350, 30, 0, 'high score')
+
+junk1 = Apple()
+junk2 = Apple()
+junk3 = Apple()
+treasure1 = Strawberry()
+treasure2 = Strawberry()
+treasure3 = Strawberry()
+treasure4 = Strawberry()
 bomb = Bomb()
 player = Player()
 
-apples = [apple, apple2, apple3]
-strawberries = [strawberry, strawberry2, strawberry3]
-fruits = [apple, apple2, apple3, strawberry, strawberry2, strawberry3]
+junks = [junk1, junk2, junk3]
+treasures = [treasure1, treasure2, treasure3, treasure4]
 
 # Make a group
 all_sprites = pygame.sprite.Group()
-fruit_sprites = pygame.sprite.Group()
+junk_sprites = pygame.sprite.Group()
+treasure_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 all_sprites.add(bomb)
+all_sprites.add(score)
 
-for fruit in fruits:
-    all_sprites.add(fruit)
-    fruit_sprites.add(fruit)
+for junk in junks:
+    all_sprites.add(junk)
+    junk_sprites.add(junk)
+
+for treasure in treasures:
+    all_sprites.add(treasure)
+    treasure_sprites.add(treasure)
 
 print(all_sprites)
 
@@ -81,10 +94,18 @@ while running:
         entity.move()
         entity.render(screen)
 
-        # # # Check Colisions
-    fruit = pygame.sprite.spritecollideany(player, fruit_sprites)
-    if fruit:
-        fruit.reset()
+    high_score.render(screen)
+    # # # Check Colisions
+    junk = pygame.sprite.spritecollideany(player, junk_sprites)
+    if junk:
+        score.sub(randint(1,3))
+        junk.reset()
+
+    # # # Check Colisions
+    treasure = pygame.sprite.spritecollideany(player, treasure_sprites)
+    if treasure:
+        score.add(randint(3,5))
+        treasure.reset()
 
     # # # Check collision player and bomb
     bomb_collide = pygame.sprite.collide_rect(player, bomb)
@@ -92,13 +113,18 @@ while running:
         print('Bomb Collide')
         print(bomb.rect)
         print(player.rect)
+        if score.score > high_score.score: 
+            print('new high score')
+            high_score.sub(high_score.score)
+            high_score.add(score.score)
+
         #reset game
         background.rotate()
         background.load()
-        for strawberry in strawberries:
-            strawberry.dx = (randint(0, 200) / 100) + 1
-        for apple in apples:
-            apple.dy = (randint(0, 200) / 100) + 1
+        for treasure in treasures:
+            treasure.dx = (randint(0, 200) / 100) + 1
+        for junk in junks:
+            junk.dy = (randint(0, 200) / 100) + 1
         for entity in all_sprites:
             entity.reset()
     

@@ -1,10 +1,11 @@
 from gameobject import GameObject
 from random import random, randint
+import pygame
 
 
 class Bomb(GameObject):
     def __init__(self):
-        super(Bomb, self).__init__(0, 0, 'bomb.png')
+        super(Bomb, self).__init__(0, 0, 'pygames-underwater/PNG/Bonus/Small-bomb.png')
         self.dx = (randint(0, 200) / 100) + 1
         self.dy = (randint(0, 200) / 100) + 1
         self.reset() 
