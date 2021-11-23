@@ -8,9 +8,9 @@ junk = [
 ]
 
 
-class Apple(GameObject):
+class Junk(GameObject):
     def __init__(self):
-        super(Apple, self).__init__(0, 0, junk[randint(0,2)])
+        super(Junk, self).__init__(0, 0, junk[randint(0,2)])
         self.dy = (randint(0, 200) / 100) + 1
         self.reset() 
 
@@ -18,12 +18,12 @@ class Apple(GameObject):
     def move(self):
         if self.direction == 'down':
             self.y += self.dy
-            # Check the y position of the apple
+            # Check the y position of the junk
             if self.y > 500: 
                 self.reset()
         elif self.direction == 'up':
             self.y -= self.dy
-            # Check the y position of the apple
+            # Check the y position of the junk
             if self.y < -50: 
                 self.reset()
 

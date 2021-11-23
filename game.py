@@ -2,8 +2,8 @@ import pygame
 pygame.init()
 from random import random, randint
 from gameobject import GameObject
-from apple import Apple
-from strawberry import Strawberry
+from junk import Junk
+from treasure import Treasure
 from player import Player
 from bomb import Bomb
 from background import Background
@@ -22,15 +22,16 @@ background.load()
 
 #set the scoreboard
 score = ScoreBoard(30, 30, 0, 'score')
-high_score = ScoreBoard(350, 30, 0, 'high score')
+high_score = ScoreBoard(330, 30, 0, 'high score')
 
-junk1 = Apple()
-junk2 = Apple()
-junk3 = Apple()
-treasure1 = Strawberry()
-treasure2 = Strawberry()
-treasure3 = Strawberry()
-treasure4 = Strawberry()
+#create initial game elements
+junk1 = Junk()
+junk2 = Junk()
+junk3 = Junk()
+treasure1 = Treasure()
+treasure2 = Treasure()
+treasure3 = Treasure()
+treasure4 = Treasure()
 bomb = Bomb()
 player = Player()
 

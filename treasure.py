@@ -9,9 +9,9 @@ treasure = [
 ]
 
 
-class Strawberry(GameObject):
+class Treasure(GameObject):
     def __init__(self):
-        super(Strawberry, self).__init__(0, 0, treasure[randint(0,3)])
+        super(Treasure, self).__init__(0, 0, treasure[randint(0,3)])
         self.dx = (randint(0, 200) / 100) + 1
         self.dy = 0
         self.reset() 
@@ -19,12 +19,12 @@ class Strawberry(GameObject):
     def move(self):
         if self.direction == 'right':
             self.x += self.dx
-            # Check the x position of the strawberry
+            # Check the x position of the treasure
             if self.x > 500: 
                 self.reset()
         elif self.direction == 'left':
             self.x -= self.dx
-            # Check the y position of the strawberry
+            # Check the y position of the treasure
             if self.x < -50: 
                 self.reset()
 
